@@ -1,31 +1,27 @@
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
-var env = require('dotenv').config();
 var axios = require('axios');
-var scheduler = require('node-scheduler');
+var env = require('dotenv').config();
 
-var oneMinute = scheduler.scheduleJob('1****', getTrending())
+let apiKey= `${process.env.GIF_AUTH}`;
+let randomEndPoint = 'https://api.giphy.com/v1/gifs/random';
 
-var GphApiClient = require('giphy-js-sdk-core')
-client = GphApiClient('process.env.GIF_AUTH')
+let url = `${randomEndPoint}?api_key=${apiKey}`;
 
-function getTrending(){
-  client.random('gifs', {'rating': 'pg-13'})
-    .then((response) => {
-      var gif = response.data.images.original.gif_url;
-      console.log(gif);
-      //return gif;
-    })
-    .catch((err) => {
-      console.log(err);
-      //return err;
-    })
-}
+axios.get(url)
+  .then(function (response) {
+
+    console.log(response.data.data.images.original.url);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
 
 
 router.get('/', (req, res, next) => {
-  getTrending();
+
 });
 
 
