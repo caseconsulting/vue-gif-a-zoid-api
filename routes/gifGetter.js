@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
+var env = require('dotenv').config();
 var axios = require('axios');
 var scheduler = require('node-scheduler');
 
 var oneMinute = scheduler.scheduleJob('1****', getTrending())
 
 var GphApiClient = require('giphy-js-sdk-core')
-client = GphApiClient()
+client = GphApiClient('process.env.GIF_AUTH')
 
 function getTrending(){
   client.random('gifs', {'rating': 'pg-13'})
