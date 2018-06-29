@@ -8,8 +8,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "debug": "~2.6.9",
     "dotenv": "^6.0.0",
+    "e": "0.0.4",
     "express": "~4.16.0",
     "giphy-js-sdk-core": "^1.0.3",
     "http-errors": "~1.6.2",
