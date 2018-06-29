@@ -8,7 +8,7 @@ const apiKey= `${process.env.GIF_AUTH}`;
 
 router.get('/', (req, res, next) => {
   let randomEndPoint = 'https://api.giphy.com/v1/gifs/random';
-  let url = `${randomEndPoint}?api_key=${apiKey}`;
+  let url = `${randomEndPoint}?api_key=${apiKey}&rating=pg-13`;
 
   axios.get(url)
     .then((response) => {
@@ -25,16 +25,16 @@ router.get('/:search', (req, res, next) => {
   let searchEndPoint = 'https://api.giphy.com/v1/gifs/search';
   let searchTerm = `${req.params.search}`;
 
-  let url = `${searchEndPoint}?api_key=${apiKey}&q=${searchTerm}&limit=5`;
-
-  console.log(url);
+  let url = `${searchEndPoint}?api_key=${apiKey}&q=${searchTerm}&limit=1000&rating=pg-13`;
 
   axios.get(url)
     .then((response) => {
       let searchReturn = [];
       for(i = 0; i < 5; i++)
       {
-        searchReturn.push(response.data.data[i].images.original.url);
+        let random = Math.floor((Math.random() * (response.data.data.length-0) + 0));
+        console.log(random);
+        searchReturn.push(response.data.data[random].images.original.url);
       }
       console.log(searchReturn);
       res.send(searchReturn);
