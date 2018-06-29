@@ -25,7 +25,7 @@ router.get('/:search', (req, res, next) => {
   let searchEndPoint = 'https://api.giphy.com/v1/gifs/search';
   let searchTerm = `${req.params.search}`;
 
-  let url = `${searchEndPoint}?api_key=${apiKey}&q=${searchTerm}&limit=1000&rating=pg-13`;
+  let url = `${searchEndPoint}?api_key=${apiKey}&q=${searchTerm}&limit=500&rating=pg-13`;
 
   axios.get(url)
     .then((response) => {
