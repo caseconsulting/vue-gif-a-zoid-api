@@ -30,7 +30,7 @@ router.get('/:search', (req, res, next) => {
   axios.get(url)
     .then((response) => {
       let searchReturn = [];
-      for(i = 0; i < 5; i++)
+      for(i = 0; i < 20; i++)
       {
         let random = Math.floor((Math.random() * (response.data.data.length-0) + 0));
         console.log(random);
